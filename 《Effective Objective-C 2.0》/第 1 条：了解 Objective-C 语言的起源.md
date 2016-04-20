@@ -9,14 +9,17 @@ OC 的重要工作都由“运行期组件”（runtime component）而非编译
 OC 是 C 的“超集”（superset），C 语言的所有功能在 OC 依然适用。
 
 OC 中的指针是指示对象的。想要声明一个变量，令其指代某个对象，语法如下：
-```
+
+```Objective-C
 NSString *someString = @"The string"; 
 //声明一个名为 someString 的变量，其类型是 NSString*, 即此变量为指向 NSString 的指针。
 ```
+
 >对象所占内存分配在“堆空间（heap space）”，绝不会分配在“栈空间（stack space）”，不能在栈中分配 OC 对象。
 
 someString 变量指向分配在堆里的某块内存，其中含有一个 NSString 对象。若再创建一个变量，令其指向同一地址，并不拷贝该对象，只是两个变量同时指向该对象：
-```
+
+``` oc
 NSString *someString = @"The string";
 NSString *anotherString = someString;
 ```
@@ -28,15 +31,18 @@ NSString *anotherString = someString;
 分配在堆中的内存必须直接管理，而分配在栈上用于保存变量的内存则会在其栈帧弹出时自动清理。OC 将堆内存管理抽象出来了，不需要 malloc 和 free 来分配和释放内存。OC 运行期环境把这部分工作抽象为一套内存管理架构，名为“引用计数”。
 
 OC 中有些不含 * 的变量，可能会用到“栈空间”（stack space），这些变量保存的不是 OC 对象，例如 CoreGraphics 中的 CGRect:
-```
+
+``` c
 CGRect frame;
 frame.origin.x = 0.0f;
 frame.origin.y = 1.0f;
 frame.size.width = 100.0f;
 frame.size.height = 150.0f;
 ```
+
 CGRect 是 C 结构体，其定义：
-```
+
+``` c
 struct CGRect {
     CGPoint origin;
     CGSize size;

@@ -1,11 +1,15 @@
 若定义动画播放时间间隔为常量，通常做法：
-```
+
+``` Objective-C
 #define ANIMATION_DURAION 0.3
 ```
+
 这样的预处理指令没有给出类型信息。下述方法比预处理指令定义常量更好（包含类型信息）：
-```
+
+``` Objective-C
 static const NSTimeInterval kAnimationDuration = 0.3; //清楚地描述了常量的含义
 ```
+
 >常量命名法：若常量局限于某“编译单元”（translation unit，也就是“实现文件”，implementation file），则在前面加字母 k；若常量在类之外可见，则常以类名为前缀。
 
 定义常量的位置也很重要。若不打算公开某个常量，则应将其定义在使用该常量的实现文件中。
@@ -17,7 +21,8 @@ static const NSTimeInterval kAnimationDuration = 0.3; //清楚地描述了常量
 
 有时候需要对外公开某个常量，例如使用通知（NSNotificationCenter）。
 定义方式：
-```
+
+``` Objective-C
 // 头文件“声明”
 extern NSString *const EOCStringConstant; //注意 const 位置
 
@@ -28,7 +33,8 @@ NSString *const EOCStringConstant = @"VALUE";
 关键字 `extern` 告诉编译器，在全局符号表中将会有一个名为 EOCStringConstant 的符号。
 
 若要将 `EOCAnimatedView` 类中的动画时长对外公布，可声明如下：
-```
+
+``` Objective-C
 // EOCAnimatedView.h
 extern const NSTimeInterval EOCAnimatedViewAnimationDuration;
 

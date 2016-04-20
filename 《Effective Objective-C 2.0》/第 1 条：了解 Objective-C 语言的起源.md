@@ -19,7 +19,7 @@ NSString *someString = @"The string";
 
 someString 变量指向分配在堆里的某块内存，其中含有一个 NSString 对象。若再创建一个变量，令其指向同一地址，并不拷贝该对象，只是两个变量同时指向该对象：
 
-``` oc
+``` Objective-C
 NSString *someString = @"The string";
 NSString *anotherString = someString;
 ```

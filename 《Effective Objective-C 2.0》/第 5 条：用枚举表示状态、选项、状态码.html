@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 6.3 (452849)"/><meta name="author" content="郭嘉"/><meta name="created" content="2015-12-22 12:07:43 +0000"/><meta name="updated" content="2016-01-07 06:34:48 +0000"/><title>第 5 条：用枚举表示状态、选项、状态码</title></head><body>
+<div>
+<p style="text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">在用一系列常量来表示错误状态码或可组合的选项时，很适合 <em style="font-style: italic;">枚举</em> 为其命名。</p>
+<p style="text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">枚举是一种常量命名方式，某个对象所经历的各种状态就可以定义为一个简单的枚举集（enumeration set）。例如：</p>
+<pre style="padding: 9.5px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; color: rgb(101, 123, 131); border-radius: 4px; word-break: break-all; word-wrap: normal; white-space: pre; border: 1px solid rgba(0, 0, 0, 0.14902); overflow: auto; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background: rgb(253, 246, 227);">
+<code style="padding: 0px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre; background-color: transparent;"><span style="color: rgb(133, 153, 0);">enum</span> <span style="color: rgb(181, 137, 0);">EOCConnectionState</span> {
+     <span style="color: rgb(181, 137, 0);">EOCConnectionStateDisconnected</span>,
+     <span style="color: rgb(181, 137, 0);">EOCConnectionStateConnecting</span>,
+     <span style="color: rgb(181, 137, 0);">EOCConnectionStateConnected</span>,
+};</code>
+</pre>
+<blockquote style="padding: 10px 15px; border-left-width: 4px; border-left-style: solid; border-left-color: rgb(153, 153, 153); word-break: break-word; font-size: 15px; font-weight: 100; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-style: normal; font-variant: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: whitesmoke;">
+<p style="font-size: 15px; font-weight: normal; text-align: justify; word-break: break-word;">编译器会为每个枚举值分配一个独有的编号，从0开始，依次加1。一个字节最多可表示0~255共256种(2^8)枚举变量。</p>
+</blockquote>
+<p style="text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">定义枚举变量：</p>
+<pre style="padding: 9.5px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; color: rgb(101, 123, 131); border-radius: 4px; word-break: break-all; word-wrap: normal; white-space: pre; border: 1px solid rgba(0, 0, 0, 0.14902); overflow: auto; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background: rgb(253, 246, 227);">
+<code style="padding: 0px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre; background-color: transparent;"><span style="color: rgb(133, 153, 0);">enum</span> EOCConnectionState state = EOCConnectionStateDisconnected;</code>
+</pre>
+<p style="text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">为简便起见，可以使用 <code style="padding: 2px 4px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre-wrap; background-color: rgb(253, 246, 227);">typedef</code> 关键字重新定义枚举类型：</p>
+<pre style="padding: 9.5px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; color: rgb(101, 123, 131); border-radius: 4px; word-break: break-all; word-wrap: normal; white-space: pre; border: 1px solid rgba(0, 0, 0, 0.14902); overflow: auto; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background: rgb(253, 246, 227);">
+<code style="padding: 0px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre; background-color: transparent;"><span style="color: rgb(133, 153, 0);">enum</span> EOCConnectionState {
+     EOCConnectionStateDisconnected,
+     EOCConnectionStateConnecting,
+     EOCConnectionStateConnected,
+};
+<span style="color: rgb(133, 153, 0);">typedef</span> <span style="color: rgb(133, 153, 0);">enum</span> EOCConnectionState EOCConnectionState;</code>
+</pre>
+<p style="text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">现在就可以不写 <code style="padding: 2px 4px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre-wrap; background-color: rgb(253, 246, 227);">enum</code>，直接定义了：</p>
+<pre style="padding: 9.5px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; color: rgb(101, 123, 131); border-radius: 4px; word-break: break-all; word-wrap: normal; white-space: pre; border: 1px solid rgba(0, 0, 0, 0.14902); overflow: auto; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background: rgb(253, 246, 227);">
+<code style="padding: 0px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre; background-color: transparent;">EOCConnectionState <span style="color: rgb(133, 153, 0);">state</span> = EOCConnectionStateDisconnected;</code>
+</pre>
+<ul style="padding: 0px; text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">
+<li>指定“底层数据类型”（underlying type）（C++11标准）的语法：</li>
+</ul>
+<pre style="padding: 9.5px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; color: rgb(101, 123, 131); border-radius: 4px; word-break: break-all; word-wrap: normal; white-space: pre; border: 1px solid rgba(0, 0, 0, 0.14902); overflow: auto; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background: rgb(253, 246, 227);">
+<code style="padding: 0px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre; background-color: transparent;"><span style="color: rgb(133, 153, 0);">enum</span> EOCConnectionState : <span style="color: rgb(38, 139, 210);">NSInteger</span> {
+    <span style="color: rgb(147, 161, 161);">/*...*/</span> 
+}</code>
+</pre>
+<ul style="padding: 0px; text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">
+<li>指定分配的序号：</li>
+</ul>
+<pre style="padding: 9.5px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; color: rgb(101, 123, 131); border-radius: 4px; word-break: break-all; word-wrap: normal; white-space: pre; border: 1px solid rgba(0, 0, 0, 0.14902); overflow: auto; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background: rgb(253, 246, 227);">
+<code style="padding: 0px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre; background-color: transparent;"><span style="color: rgb(133, 153, 0);">enum</span> EOCConnectionState {
+    EOCConnectionStateDisconnected = <span style="color: rgb(42, 161, 152);">1</span>,
+    EOCConnectionStateConnecting, <span style="color: rgb(147, 161, 161);">//接下来的值会依次递增1</span>
+    EOCConnectionStateConnected
+};</code>
+</pre>
+<ul style="padding: 0px; text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">
+<li>若定义的枚举选项可以彼此组合，则更应如此。例如：</li>
+</ul>
+<pre style="padding: 9.5px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; color: rgb(101, 123, 131); border-radius: 4px; word-break: break-all; word-wrap: normal; white-space: pre; border: 1px solid rgba(0, 0, 0, 0.14902); overflow: auto; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background: rgb(253, 246, 227);">
+<code style="padding: 0px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre; background-color: transparent;"><span style="color: rgb(147, 161, 161);">// UIView.h</span>
+<span style="color: rgb(133, 153, 0);">typedef</span> <span style="color: rgb(38, 139, 210);">NS_OPTIONS</span>(NSUInteger, UIViewAutoresizing) {
+    UIViewAutoresizingNone                 = <span style="color: rgb(42, 161, 152);">0</span>,
+    UIViewAutoresizingFlexibleLeftMargin   = <span style="color: rgb(42, 161, 152);">1</span> &lt;&lt; <span style="color: rgb(42, 161, 152);">0</span>,
+    UIViewAutoresizingFlexibleWidth        = <span style="color: rgb(42, 161, 152);">1</span> &lt;&lt; <span style="color: rgb(42, 161, 152);">1</span>,
+    UIViewAutoresizingFlexibleRightMargin  = <span style="color: rgb(42, 161, 152);">1</span> &lt;&lt; <span style="color: rgb(42, 161, 152);">2</span>,
+    UIViewAutoresizingFlexibleTopMargin    = <span style="color: rgb(42, 161, 152);">1</span> &lt;&lt; <span style="color: rgb(42, 161, 152);">3</span>,
+    UIViewAutoresizingFlexibleHeight       = <span style="color: rgb(42, 161, 152);">1</span> &lt;&lt; <span style="color: rgb(42, 161, 152);">4</span>,
+    UIViewAutoresizingFlexibleBottomMargin = <span style="color: rgb(42, 161, 152);">1</span> &lt;&lt; <span style="color: rgb(42, 161, 152);">5</span>
+};</code>
+</pre>
+<p style="text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">其二进制值如图所示：<br/></p>
+<div style="text-align: center; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);"><img src="%E7%AC%AC%205%20%E6%9D%A1%EF%BC%9A%E7%94%A8%E6%9E%9A%E4%B8%BE%E8%A1%A8%E7%A4%BA%E7%8A%B6%E6%80%81%E3%80%81%E9%80%89%E9%A1%B9%E3%80%81%E7%8A%B6%E6%80%81%E7%A0%81.resources/BE24C46C-7DD9-4A31-AEA1-D5515BF82EFB.png" height="108" width="408"/><br/>
+<div style="min-width: 20%; min-height: 22px; padding: 10px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(217, 217, 217); font-size: 13px; color: rgb(153, 153, 153); font-style: italic;">二进制值示意图</div>
+</div>
+<ul style="padding: 0px; text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">
+<li>此外，枚举用法也可用于 <code style="padding: 2px 4px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre-wrap; background-color: rgb(253, 246, 227);">switch</code> 语句中，例如：</li>
+</ul>
+<pre style="padding: 9.5px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; color: rgb(101, 123, 131); border-radius: 4px; word-break: break-all; word-wrap: normal; white-space: pre; border: 1px solid rgba(0, 0, 0, 0.14902); overflow: auto; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background: rgb(253, 246, 227);">
+<code style="padding: 0px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre; background-color: transparent;"><span style="color: rgb(133, 153, 0);">typedef</span> <span style="color: rgb(38, 139, 210);">NS_ENUM</span>(<span style="color: rgb(38, 139, 210);">NSUInteger</span>, EOCConnectionState) {
+    EOCConnectionStateDisconnected,
+    EOCConnectionStateConnecting,
+    EOCConnectionStateConnected
+};
+
+<span style="color: rgb(133, 153, 0);">switch</span> (_currentState) {
+    EOCConnectionStateDisconnected:
+      <span style="color: rgb(147, 161, 161);">//...</span>
+      <span style="color: rgb(133, 153, 0);">break</span>;
+    EOCConnectionStateConnecting:
+      <span style="color: rgb(147, 161, 161);">//...</span>
+      <span style="color: rgb(133, 153, 0);">break</span>;
+    EOCConnectionStateConnected:
+      <span style="color: rgb(147, 161, 161);">//...</span>
+      <span style="color: rgb(133, 153, 0);">break</span>;
+}</code>
+</pre>
+<blockquote style="padding: 10px 15px; border-left-width: 4px; border-left-style: solid; border-left-color: rgb(153, 153, 153); word-break: break-word; font-size: 15px; font-weight: 100; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-style: normal; font-variant: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: whitesmoke;">
+<p style="font-size: 15px; font-weight: normal; text-align: justify; word-break: break-word;">注：若用枚举来定义状态机（state machine），最好不要有 <code style="padding: 2px 4px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 12px; color: rgb(101, 123, 131); border-radius: 3px; border: none; white-space: pre-wrap; background-color: rgb(253, 246, 227);">default</code> 分支。</p>
+</blockquote>
+</div>
+<div><br/></div>
+<div>
+<div style="text-align: justify; word-break: break-word; color: rgb(47, 47, 47); font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(252, 250, 242);">
+<div>主要来源：<a href="http://book.douban.com/subject/25829244/" target="_blank" style="color: rgb(64, 148, 199); text-decoration: none;">《Effective Objective-C 2.0》</a></div>
+</div>
+</div>
+</body></html>
